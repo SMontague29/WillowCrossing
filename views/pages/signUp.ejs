@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/head %>
+</head>
+
+<body>
+  <!--navigation-->
+  <% include ../partials/navigation %>
+<!--
+<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> -->
+
+<div class="container">
+
+  <div class="section carouselSection" style="font-family: 'Gloria Hallelujah', cursive;">
+
+    <div class="carousel carousel-slider center col s8" data-indicators="true" style="height: 600px">
+      <form enctype="multipart/form-data" id="addressPopulate">
+        <input type="hidden" id="avatar-url" name="avatar-url" value="/media/profPic.jpg">
+        <div class="carousel-item" style="background-color: #edfadc; padding: 30px;" href="#one!">
+          <div id="error-div"></div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="first_name" type="text" class="validate">
+              <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="username" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+        </div> <!-- end carousel slide 1 -->
+
+        <div class="carousel-item" style="background-color: #faf8dc; padding: 30px;" href="#two!">
+          <!-- Google Autopopulate html -->
+          <div class="row" id="address">
+            <div class="col s12" id="locationField">
+              <input id="autocomplete" placeholder="Enter Your Address Here" onFocus="geolocate()" type="text"></input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <p class="label" style="color: purple;">Street address</p>
+              <p class="slimField"><input class="field" id="street_number" disabled="true"></input>
+              </p>
+              <p class="wideField" colspan="2"><input class="field" id="route" disabled="true"></input>
+              </p>
+            </div>
+            <div class="col s4">
+              <p class="label" style="color: purple;">City</p>
+              <p class="wideField" colspan="3"><input class="field" id="locality" disabled="true"></input>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s3">
+              <p class="label" style="color: purple;">State</p>
+              <p class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"></input>
+              </p>
+            </div>
+            <div class="col s6">
+              <p class="label" style="color: purple;">Zip code</p>
+              <p class="wideField"><input class="field" id="postal_code" disabled="true"></input>
+              </p>
+            </div>
+            <div class="col s3">
+              <p class="label" style="color: purple;">Country</p>
+              <p class="wideField" colspan="3"><input class="field" id="country" disabled="true"></input>
+              </p>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light grabDataBtn" id="grabdata" type="submit" name="action">Submit<i class="material-icons right">send</i>
+          </button>
+
+        </div>
+      </div><!-- end carousel slide 2 -->
+    </div>
+    </form>
+    <!-- end container and section -->
+  </div>
+</div>
+
+
+
+<footer class="page-footer">
+<% include ../partials/footer%>
+</footer>
+
+</body>
+</html>
+
+
+<script>
+$('.carousel.carousel-slider').carousel({fullWidth: true});
+
+
+//function which grab the user's input data from the sign up form and puts it into an object to route to the table
+var userObject;
+
+function grabData(event) {
+  event.preventDefault();
+  var address = $("#autocomplete").val().trim();
+  var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBaw-4l7qS4b_L7kXhuHViE2smEu1k34Dw";
+
+  var first_name = $("#first_name").val().trim(),
+  last_name = $("#last_name").val().trim(),
+  username = $("#username").val().trim(),
+  password = $("#password").val().trim(),
+  email = $("#email").val().trim(),
+  //picture_url = $("#picture_url").val().trim(),
+  autocomplete = $("#autocomplete").val().trim(),
+  street_number = $("#street_number").val().trim(),
+  route = $("#route").val().trim(),
+  locality = $("#locality").val().trim(),
+  administrative_area_level_1 = $("#administrative_area_level_1").val().trim(),
+  postal_code = $("#postal_code").val().trim(),
+  country = $("#country").val().trim();
+
+
+  var info = {
+    first_name: first_name,
+    last_name: last_name,
+    cups_of_sugar: 0,
+    //picture_url:picture_url,
+    username: username,
+    password: password,
+    email: email,
+    autocomplete: autocomplete,
+    street_number: street_number,
+    route: route,
+    locality: locality,
+    administrative_area_level_1: administrative_area_level_1,
+    postal_code: postal_code,
+    country: country
+  }
+
+// ajax call because this is on the frontend
+  $.post("/put_newuser_in_db", info, function(userObject) {
+    //  console.log(userObject);
+    window.location.href = '/profile';
+  }).catch(function(data) {
+    //  window.location.href='/';
+    //JSON.stringify(data);
+    var message = $('<p>').text("Username is Taken");
+    message.css("color", "red");
+    $("#error-div").empty();
+    $("#error-div").append(message);
+    //console.log(data);
+  })
+}
+//ends grabData function
+//on click of "Submit" button, the grabdata function occurs
+$("#grabdata").on("click", grabData);
+
+
+
+// This displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */
+    (document.getElementById('autocomplete')), {
+      types: ['geocode']
+    });
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    }
+  }
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+
+          lng: position.coords.longitude
+        };
+
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0Zeq_ONgdAnTqmMn9n4sD94vTut2WIeY&libraries=places&callback=initAutocomplete" async defer></script>
