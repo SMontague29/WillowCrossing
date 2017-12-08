@@ -1,0 +1,239 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  background-color: #aeabab !important;
+}
+
+@media only screen and (min-width : 768px) {
+  header, main, footer {
+    padding-left: 0;
+    }
+};
+
+p {
+  color: black;
+}
+.disclaimer {
+  font-size: 12px !important;
+  font-family: 'Open Sans', sans-serif; !important;
+
+}
+
+#about-me-div{
+border: solid;
+border-color: white !important;
+}
+
+#username-h1{
+  font-family: 'Open Sans', sans-serif;
+  margin:0px;
+}
+
+#city-state-h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.modalContainer {
+  margin: 0 auto;
+}
+
+.form-signin-heading {
+  font-family: 'Open Sans', sans-serif;
+}
+
+button.grabDataBtn  {
+  position: relative;
+  bottom: 24px;
+}
+
+.mainLogo {
+  padding: 0px;
+  position: relative;
+
+}
+
+
+
+
+.page-footer h5 {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+#signUpButton {
+   background-color: #385623 !important;
+
+}
+
+.material-icons {
+   color: #385623 !important;
+   font-size: 40px;
+}
+
+
+
+#bulletinHeader {
+  text-align: center;
+  font-family: "Shadows Into Light", cursive;
+}
+td, th {
+  color: #1820ac !important;
+}
+
+
+.brand-logo{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+label.treatment {
+  display: block;
+  width: 96%;
+
+}
+
+label.treatment .commoner {
+  display: block;
+  float: left;
+
+}
+
+label.treatment .royal{
+  display: block;
+  float: right;
+  text-align: right;
+
+};
+
+
+.main-profile-pic {
+  padding: 30px 10px 55px 10px;
+  background-color: white;
+}
+
+.profileContainer {
+  border: solid;
+  border-color: white;
+  background-color: #aeabab;
+}
+
+/*these all contain our pallet colors */
+.side-nav {
+  background-color: #385623 !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.navLogo {
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  position: relative;
+  bottom: 30px;
+}
+
+.side-nav li>a{
+  font-size: 18px !important;
+  color: white !important;
+}
+
+nav ul a {
+  font-size: 18px !important;
+}
+
+.user-view {
+  background-color: white;
+}
+
+.user-view a {
+  color: black;
+}
+
+#navbar {
+    background-color: #385623 !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.page-footer {
+    background-color: #385623 !important;
+}
+
+
+button{
+  background-color: #F4D35E !important;
+}
+
+.modal-trigger {
+  background-color: #385623 !important;
+}
+
+.homeBtn {
+  position: relative;
+  left: 30px;
+  font-size: 45px !important;
+  color: #385623 !important;
+}
+
+
+
+.defaultPic {
+    background-image: url("../media/profPic.jpg");
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+}
+
+#preview {
+    background-repeat: no-repeat;
+    margin: 0px;
+    background-position: center;
+    width: 230px;
+    height: auto;
+}
+
+    /* Add a hover effect (blue shadow) */
+#preview:hover {
+box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+}
+
+#profBtn {
+  display: none;
+}
+
+
+
+.circleQ {
+border: solid;
+border-color: white;
+background-color: #385623;
+border-radius: 360px;
+padding: 0;
+margin: 0;
+height: 300px;
+width: 300px;
+
+}
+
+.switch {
+  font-size: 30px;
+  ffont-family: 'Montserrat', sans-serif;
+  position: relative;
+  left: 35px;
+  top: 50px;
+}
+
+.yesno {
+  position: relative;
+  left: 40px;
+}
