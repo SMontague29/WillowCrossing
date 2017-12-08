@@ -2,6 +2,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #aeabab !important;
 }
 
 main {
@@ -18,9 +19,13 @@ main {
 p {
   color: black;
 }
+
+h3 {
+  font-weight: bold;
+}
 .disclaimer {
   font-size: 12px !important;
-  font-family: 'Open Sans', sans-serif; !important;
+  font-family: 'Open Sans', sans-serif !important;
 
 }
 
@@ -35,7 +40,7 @@ border-color: white !important;
 }
 
 #city-state-h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: sans-serif;
 }
 
 

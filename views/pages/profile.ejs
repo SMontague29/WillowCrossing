@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <head>
+  <% include ../partials/head %>
+  </head>
+
+  <body>
+    <!--navigation-->
+    <% include ../partials/navigation %>
+<div id="profile-page-container">
+    <div class="container">
+      <div class="row profileContainer">
+        <!--where user uploads profile picture -->
+        <form ref="uploadForm" action="/uploadForm" method="post" enctype="multipart/form-data">
+          <div class="col s4" style="padding: 60px">
+              <input type="file" id="file-input" name="uploadedPic" accept="image/*" onchange="readURL(this);"/>
+              <img class="materialboxed userPic" id="preview" class="main-profile-pic" src="/profile_pic" alt="User img"/>
+              <button id="profBtn" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">camera_alt</i>
+              </button>
+          </div>
+        </form>
+        <div class="col s4 xs12" style="padding: 60px 0px">
+          <h2 id="username-h1"></h2>
+          <h3 id="city-state-h3"></h3>
+        </div>
+</div>
+
+    <footer class="page-footer">
+    <% include ../partials/footer%>
+    </footer>
+
+  </body>
+
+</html>
+
+
+<script>
+  // this allows picture uploads to display on page
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('preview').src =  e.target.result;
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+    $('#profBtn').css("display", "block");
+    $('.background').css("background", "inherit");
+  }
+</script>

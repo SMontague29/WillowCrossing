@@ -2,7 +2,7 @@ var Sequelize = require("sequelize");
 
 var sequelize = require("../config/connection.js");
 
-  var Human = sequelize.define('human', {
+  var Resident = sequelize.define('resident', {
 
       first_name: {
         type:Sequelize.TEXT
@@ -49,4 +49,4 @@ var sequelize = require("../config/connection.js");
   })
 
 
-module.exports = Human;
+module.exports = Resident;
