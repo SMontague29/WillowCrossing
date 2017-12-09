@@ -4,7 +4,10 @@
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 
+var mysql = require('mysql');
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
+connection.connect();
 
 //below is the local configuration when running locally
 var sequelize = new Sequelize("POP_db", "root", "1026",  {
