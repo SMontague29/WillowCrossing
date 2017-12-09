@@ -1,11 +1,13 @@
 var Human = require("../models/info.js");
 var Image = require("../models/images.js");
 var bulletinPost= require("../models/bulletin.js");
+//var keys = require("../config/keys.js");
 var request = require("request");
 var bCrypt = require("bcrypt-nodejs");
 var path = require('path');
 var fileUpload = require('express-fileupload');
 var s3 = require('s3');
+var keys = require("../config/keys.js");
 var loginAuth =require("./userSignInAuth.js");
 var fs = require("fs");
 var bulletinPost = require("../models/bulletin.js");
