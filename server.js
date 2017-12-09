@@ -7,7 +7,7 @@ var session    = require('cookie-session')
 
 
 //this allows us to run locally OR use heroku
-var PORT= process.env.PORT || 8000;
+var PORT= process.env.PORT || 3306;
 
 app.use(express.static(__dirname + '/public'));
 // parse various different custom JSON types as JSON
