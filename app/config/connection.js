@@ -14,7 +14,7 @@ var sequelize = new Sequelize("POP_db", "root", "1026",  {
   pool: {
     max: 5,
     min: 0,
-    idle: 10000
+    idle: 10000keys
   }
 });
 
